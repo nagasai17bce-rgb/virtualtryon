@@ -18,8 +18,9 @@ main{max-width:1320px;margin:auto;padding:34px 28px 60px}.intro{display:flex;ali
 .panelhead{padding:18px 20px;border-bottom:1px solid #f0e9e1;display:flex;justify-content:space-between;align-items:center}
 .panelhead h2{font:600 19px 'Playfair Display';margin:0}.sub{font-size:11px;color:var(--muted);margin-top:4px}
 .preview{min-height:570px;background:radial-gradient(ellipse at 50% 40%,#e9dfd1,#d8c8b4 70%,#c9b7a2);display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
-.canvas{position:relative;width:min(100%,560px);height:auto;max-width:100%;filter:drop-shadow(0 15px 20px #4a302633)}
-.canvas img{width:100%;height:auto;max-height:530px;object-fit:contain;display:block;border-radius:5px}
+.canvas{position:relative;width:min(100%,440px);height:530px;max-width:100%;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 15px 20px #4a302633);background:#f4eee5;border:1px solid #cbbba8;border-radius:10px;overflow:hidden}
+.canvas img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;border-radius:5px}
+.canvas.missing:after{content:'YOUR MODEL PHOTO WILL APPEAR HERE';display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;height:100%;width:100%;font:600 13px 'DM Sans';letter-spacing:2px;color:#765b52;background:linear-gradient(145deg,#f8f1e8,#e7d8c8)}
 .overlay{display:none}
 .sari-body{position:absolute;left:34%;top:22%;width:39%;height:54%;background:var(--sari);opacity:.82;clip-path:polygon(18% 0,82% 0,100% 38%,87% 100%,8% 100%,0 36%);mix-blend-mode:multiply;filter:saturate(1.1)}
 .pallu{position:absolute;left:55%;top:18%;width:30%;height:64%;background:linear-gradient(135deg,var(--sari),var(--border),var(--sari));opacity:.92;clip-path:polygon(0 0,45% 0,100% 100%,56% 100%);transform:rotate(-5deg);mix-blend-mode:multiply}
@@ -32,8 +33,8 @@ hr{border:0;border-top:1px solid #f0e9e1;margin:20px 0}.choice{display:flex;alig
 .upload{border:1px dashed #cbb69d;background:#fbf7f0;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;font-size:11px;color:#78666a;cursor:pointer}.upload strong{display:block;color:var(--wine);font-size:12px;margin-bottom:3px}
 .footnote{font-size:10px;color:#9b8987;line-height:1.5;margin:14px 0 0}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#302128;color:white;padding:12px 18px;border-radius:30px;font-size:12px;opacity:0;transition:.25s;pointer-events:none}.toast.show{opacity:1}
-@media(max-width:850px){nav{display:none}.workspace{grid-template-columns:1fr}.preview{min-height:470px}.canvas{width:min(100%,560px);height:auto}.intro{display:block}.steps{margin-top:16px;flex-wrap:wrap}}
-@media(max-width:430px){main{padding:24px 13px}.preview{min-height:420px}.canvas{width:100%;height:auto}.swatches{gap:6px}.swatch{padding:5px}.fabric{height:55px}}
+@media(max-width:850px){nav{display:none}.workspace{grid-template-columns:1fr}.preview{min-height:470px}.canvas{width:min(100%,440px);height:530px}.intro{display:block}.steps{margin-top:16px;flex-wrap:wrap}}
+@media(max-width:430px){main{padding:24px 13px}.preview{min-height:420px}.canvas{width:100%;height:470px}.swatches{gap:6px}.swatch{padding:5px}.fabric{height:55px}}
 </style>
 </head>
 <body>
@@ -42,7 +43,7 @@ hr{border:0;border-top:1px solid #f0e9e1;margin:20px 0}.choice{display:flex;alig
 <div class="intro"><div><div class="eyebrow">A NEW WAY TO DRAPE</div><h1>Find your forever saree.</h1><p>Explore a curated collection and preview the look in your own studio.</p></div><div class="steps"><span class="active">01 &nbsp; Choose saree</span><span>02 &nbsp; Style</span><span>03 &nbsp; Preview</span></div></div>
 <div class="workspace">
 <section class="panel"><div class="panelhead"><div><h2>Your virtual look</h2><div class="sub">Uploaded reference photo · Original proportions</div></div><span style="font-size:10px;color:#9a815e">✦ STUDIO</span></div>
-<div class="preview"><div class="canvas"><img id="model" src="model-photo.jpeg" alt="Model preview"><div class="overlay"><div class="sari-body"></div><div class="pleats"></div><div class="pallu"></div></div></div><div class="previewbadge">✦ PHOTO PREVIEW · FABRIC SELECTION DEMO</div></div>
+<div class="preview"><div class="canvas"><img id="model" src="./model-photo.jpeg" alt="Model preview" onerror="this.style.display='none';this.parentElement.classList.add('missing')"><div class="overlay"><div class="sari-body"></div><div class="pleats"></div><div class="pallu"></div></div></div><div class="previewbadge">✦ PHOTO PREVIEW · FABRIC SELECTION DEMO</div></div>
 <div class="actions"><button class="btn secondary" id="reset">Reset</button><button class="btn primary" id="try">Apply this saree&nbsp; →</button></div></section>
 <section class="panel"><div class="panelhead"><div><h2>Curated collection</h2><div class="sub">Handpicked colours for every occasion</div></div><span style="font-size:11px;color:#8e6d4c">06 PIECES</span></div>
 <div class="rightbody"><h3 class="sectiontitle">Choose your drape</h3><p class="hint">Choose a saree colour and finish for this visual demo. Realistic draping requires a full-length model photo and a VTON model.</p>
@@ -78,7 +79,7 @@ document.getElementById('reset').addEventListener('click',()=>{
  root.style.setProperty('--sari',current.color);root.style.setProperty('--border',current.border);
  document.getElementById('zari').checked=true;document.getElementById('pallu').checked=true;document.getElementById('finish').checked=false;say('Preview reset.');
 });
-document.getElementById('upload').addEventListener('change',e=>{const f=e.target.files[0];if(f){document.getElementById('model').src=URL.createObjectURL(f);say('New model photo loaded.')}});
+document.getElementById('upload').addEventListener('change',e=>{const f=e.target.files[0];if(f){const img=document.getElementById('model');img.style.display='block';img.parentElement.classList.remove('missing');img.src=URL.createObjectURL(f);say('New model photo loaded.')}});
 document.getElementById('pallu').addEventListener('change',e=>document.querySelector('.pallu').style.display=e.target.checked?'block':'none');
 document.getElementById('zari').addEventListener('change',e=>document.querySelector('.pleats').style.background=e.target.checked?'repeating-linear-gradient(90deg,transparent 0 7px,#fff5 8px 10px),linear-gradient(110deg,var(--sari),var(--border))':'var(--sari)');
 document.getElementById('finish').addEventListener('change',e=>document.querySelector('.sari-body').style.opacity=e.target.checked?'.96':'.82');
