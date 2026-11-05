@@ -18,9 +18,9 @@ main{max-width:1320px;margin:auto;padding:34px 28px 60px}.intro{display:flex;ali
 .panelhead{padding:18px 20px;border-bottom:1px solid #f0e9e1;display:flex;justify-content:space-between;align-items:center}
 .panelhead h2{font:600 19px 'Playfair Display';margin:0}.sub{font-size:11px;color:var(--muted);margin-top:4px}
 .preview{min-height:570px;background:radial-gradient(ellipse at 50% 40%,#e9dfd1,#d8c8b4 70%,#c9b7a2);display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
-.canvas{position:relative;height:min(70vh,570px);aspect-ratio:365/547;max-width:100%;filter:drop-shadow(0 15px 20px #4a302633)}
-.canvas img{width:100%;height:100%;object-fit:contain;display:block;border-radius:5px}
-.overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.canvas{position:relative;width:min(100%,560px);height:auto;max-width:100%;filter:drop-shadow(0 15px 20px #4a302633)}
+.canvas img{width:100%;height:auto;max-height:530px;object-fit:contain;display:block;border-radius:5px}
+.overlay{display:none}
 .sari-body{position:absolute;left:34%;top:22%;width:39%;height:54%;background:var(--sari);opacity:.82;clip-path:polygon(18% 0,82% 0,100% 38%,87% 100%,8% 100%,0 36%);mix-blend-mode:multiply;filter:saturate(1.1)}
 .pallu{position:absolute;left:55%;top:18%;width:30%;height:64%;background:linear-gradient(135deg,var(--sari),var(--border),var(--sari));opacity:.92;clip-path:polygon(0 0,45% 0,100% 100%,56% 100%);transform:rotate(-5deg);mix-blend-mode:multiply}
 .pleats{position:absolute;left:28%;top:48%;width:48%;height:32%;background:repeating-linear-gradient(90deg,transparent 0 7px,#fff4 8px 10px),linear-gradient(110deg,var(--sari),var(--border));opacity:.75;clip-path:polygon(23% 0,76% 0,100% 100%,0 100%);mix-blend-mode:multiply}
@@ -32,8 +32,8 @@ hr{border:0;border-top:1px solid #f0e9e1;margin:20px 0}.choice{display:flex;alig
 .upload{border:1px dashed #cbb69d;background:#fbf7f0;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;font-size:11px;color:#78666a;cursor:pointer}.upload strong{display:block;color:var(--wine);font-size:12px;margin-bottom:3px}
 .footnote{font-size:10px;color:#9b8987;line-height:1.5;margin:14px 0 0}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#302128;color:white;padding:12px 18px;border-radius:30px;font-size:12px;opacity:0;transition:.25s;pointer-events:none}.toast.show{opacity:1}
-@media(max-width:850px){nav{display:none}.workspace{grid-template-columns:1fr}.preview{min-height:470px}.canvas{height:480px}.intro{display:block}.steps{margin-top:16px;flex-wrap:wrap}}
-@media(max-width:430px){main{padding:24px 13px}.preview{min-height:420px}.canvas{height:420px}.swatches{gap:6px}.swatch{padding:5px}.fabric{height:55px}}
+@media(max-width:850px){nav{display:none}.workspace{grid-template-columns:1fr}.preview{min-height:470px}.canvas{width:min(100%,560px);height:auto}.intro{display:block}.steps{margin-top:16px;flex-wrap:wrap}}
+@media(max-width:430px){main{padding:24px 13px}.preview{min-height:420px}.canvas{width:100%;height:auto}.swatches{gap:6px}.swatch{padding:5px}.fabric{height:55px}}
 </style>
 </head>
 <body>
@@ -41,11 +41,11 @@ hr{border:0;border-top:1px solid #f0e9e1;margin:20px 0}.choice{display:flex;alig
 <main>
 <div class="intro"><div><div class="eyebrow">A NEW WAY TO DRAPE</div><h1>Find your forever saree.</h1><p>Explore a curated collection and preview the look in your own studio.</p></div><div class="steps"><span class="active">01 &nbsp; Choose saree</span><span>02 &nbsp; Style</span><span>03 &nbsp; Preview</span></div></div>
 <div class="workspace">
-<section class="panel"><div class="panelhead"><div><h2>Your virtual look</h2><div class="sub">Model preview · Full-length portrait</div></div><span style="font-size:10px;color:#9a815e">✦ STUDIO</span></div>
-<div class="preview"><div class="canvas"><img id="model" src="model-photo.jpeg" alt="Model preview"><div class="overlay"><div class="sari-body"></div><div class="pleats"></div><div class="pallu"></div></div></div><div class="previewbadge">✦ DEMO DRAPE PREVIEW</div></div>
+<section class="panel"><div class="panelhead"><div><h2>Your virtual look</h2><div class="sub">Uploaded reference photo · Original proportions</div></div><span style="font-size:10px;color:#9a815e">✦ STUDIO</span></div>
+<div class="preview"><div class="canvas"><img id="model" src="model-photo.jpeg" alt="Model preview"><div class="overlay"><div class="sari-body"></div><div class="pleats"></div><div class="pallu"></div></div></div><div class="previewbadge">✦ PHOTO PREVIEW · FABRIC SELECTION DEMO</div></div>
 <div class="actions"><button class="btn secondary" id="reset">Reset</button><button class="btn primary" id="try">Apply this saree&nbsp; →</button></div></section>
 <section class="panel"><div class="panelhead"><div><h2>Curated collection</h2><div class="sub">Handpicked colours for every occasion</div></div><span style="font-size:11px;color:#8e6d4c">06 PIECES</span></div>
-<div class="rightbody"><h3 class="sectiontitle">Choose your drape</h3><p class="hint">Select a saree to change the colour and fabric treatment in the preview.</p>
+<div class="rightbody"><h3 class="sectiontitle">Choose your drape</h3><p class="hint">Choose a saree colour and finish for this visual demo. Realistic draping requires a full-length model photo and a VTON model.</p>
 <div class="swatches" id="swatches">
 <button class="swatch selected" data-name="Royal Wine" data-color="#7b263f" data-border="#c59a67"><div class="fabric" style="background:linear-gradient(130deg,#4f142c,#9b3d58,#d2a76d)"></div><b>Royal Wine</b><small>Silk · Festive</small></button>
 <button class="swatch" data-name="Peacock Teal" data-color="#176c69" data-border="#d5b56c"><div class="fabric" style="background:linear-gradient(130deg,#064a4b,#1a8c83,#d4b56c)"></div><b>Peacock Teal</b><small>Banarasi · Wedding</small></button>
@@ -71,7 +71,7 @@ document.querySelectorAll('.swatch').forEach(btn=>btn.addEventListener('click',(
  current={name:btn.dataset.name,color:btn.dataset.color,border:btn.dataset.border};
  root.style.setProperty('--sari',current.color);root.style.setProperty('--border',current.border);
 }));
-document.getElementById('try').addEventListener('click',()=>say(current.name+' selected — demo drape applied.'));
+document.getElementById('try').addEventListener('click',()=>say(current.name+' selected — colour choice saved in this demo.'));
 document.getElementById('reset').addEventListener('click',()=>{
  document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('selected'));
  const first=document.querySelector('.swatch');first.classList.add('selected');current={name:first.dataset.name,color:first.dataset.color,border:first.dataset.border};
