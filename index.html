@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ĀIRA — Saree Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--ink:#281b20;--muted:#88777b;--wine:#6e263e;--gold:#c6a36a;--cream:#f8f3eb;--line:#e9dfd4}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}
+header{height:76px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#fbf8f3}
+.brand{font:600 27px 'Playfair Display';letter-spacing:3px;color:var(--wine)}.brand small{display:block;font:10px 'DM Sans';letter-spacing:3px;color:var(--muted);margin-top:-2px}
+nav{display:flex;gap:30px;color:#705e61;font-size:13px}.navtag{border:1px solid #ddcbb5;border-radius:30px;padding:10px 16px;color:var(--wine)}
+main{max-width:1320px;margin:auto;padding:34px 28px 60px}.intro{display:flex;align-items:end;justify-content:space-between;margin-bottom:25px}
+.eyebrow{font-size:10px;letter-spacing:3px;color:#a17a54;font-weight:700}.intro h1{font:600 clamp(30px,4vw,45px) 'Playfair Display';margin:8px 0 5px}.intro p{margin:0;color:var(--muted);font-size:13px}
+.steps{display:flex;gap:8px;font-size:11px;color:#8c7c7d}.steps span{padding:9px 13px;border:1px solid var(--line);border-radius:25px}.steps .active{background:var(--wine);color:white;border-color:var(--wine)}
+.workspace{display:grid;grid-template-columns:minmax(380px,1.08fr) minmax(330px,.92fr);gap:22px}
+.panel{background:#fffdfa;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 30px #54351a0b}
+.panelhead{padding:18px 20px;border-bottom:1px solid #f0e9e1;display:flex;justify-content:space-between;align-items:center}
+.panelhead h2{font:600 19px 'Playfair Display';margin:0}.sub{font-size:11px;color:var(--muted);margin-top:4px}
+.preview{min-height:570px;background:radial-gradient(ellipse at 50% 40%,#e9dfd1,#d8c8b4 70%,#c9b7a2);display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+.canvas{position:relative;height:min(70vh,570px);aspect-ratio:365/547;max-width:100%;filter:drop-shadow(0 15px 20px #4a302633)}
+.canvas img{width:100%;height:100%;object-fit:contain;display:block;border-radius:5px}
+.overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.sari-body{position:absolute;left:34%;top:22%;width:39%;height:54%;background:var(--sari);opacity:.82;clip-path:polygon(18% 0,82% 0,100% 38%,87% 100%,8% 100%,0 36%);mix-blend-mode:multiply;filter:saturate(1.1)}
+.pallu{position:absolute;left:55%;top:18%;width:30%;height:64%;background:linear-gradient(135deg,var(--sari),var(--border),var(--sari));opacity:.92;clip-path:polygon(0 0,45% 0,100% 100%,56% 100%);transform:rotate(-5deg);mix-blend-mode:multiply}
+.pleats{position:absolute;left:28%;top:48%;width:48%;height:32%;background:repeating-linear-gradient(90deg,transparent 0 7px,#fff4 8px 10px),linear-gradient(110deg,var(--sari),var(--border));opacity:.75;clip-path:polygon(23% 0,76% 0,100% 100%,0 100%);mix-blend-mode:multiply}
+.previewbadge{position:absolute;bottom:18px;left:18px;background:#fffdf4e8;border:1px solid #fff;border-radius:30px;padding:9px 13px;font-size:10px;color:#65534c}
+.actions{display:flex;gap:10px;padding:15px 18px;border-top:1px solid #f0e9e1}.btn{border:0;border-radius:8px;padding:13px 17px;font:600 12px 'DM Sans';cursor:pointer}.primary{background:var(--wine);color:white;flex:1}.secondary{background:#f4ede4;color:var(--wine);border:1px solid #e8dbcc}
+.rightbody{padding:20px}.sectiontitle{font:600 17px 'Playfair Display';margin:0 0 5px}.hint{font-size:11px;color:var(--muted);margin:0 0 16px;line-height:1.5}
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.swatch{border:1px solid var(--line);padding:7px;border-radius:10px;background:white;cursor:pointer;text-align:left}.swatch.selected{border:2px solid var(--wine);padding:6px;box-shadow:0 0 0 2px #6e263e13}.fabric{height:68px;border-radius:6px;margin-bottom:8px;position:relative;overflow:hidden}.fabric:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(110deg,transparent 0 12px,#ffffff28 13px 15px)}.swatch b{font-size:11px;display:block}.swatch small{font-size:9px;color:var(--muted)}
+hr{border:0;border-top:1px solid #f0e9e1;margin:20px 0}.choice{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border:1px solid var(--line);border-radius:9px;margin-top:8px;font-size:12px}.choice input{accent-color:var(--wine)}
+.upload{border:1px dashed #cbb69d;background:#fbf7f0;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;font-size:11px;color:#78666a;cursor:pointer}.upload strong{display:block;color:var(--wine);font-size:12px;margin-bottom:3px}
+.footnote{font-size:10px;color:#9b8987;line-height:1.5;margin:14px 0 0}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#302128;color:white;padding:12px 18px;border-radius:30px;font-size:12px;opacity:0;transition:.25s;pointer-events:none}.toast.show{opacity:1}
+@media(max-width:850px){nav{display:none}.workspace{grid-template-columns:1fr}.preview{min-height:470px}.canvas{height:480px}.intro{display:block}.steps{margin-top:16px;flex-wrap:wrap}}
+@media(max-width:430px){main{padding:24px 13px}.preview{min-height:420px}.canvas{height:420px}.swatches{gap:6px}.swatch{padding:5px}.fabric{height:55px}}
+</style>
+</head>
+<body>
+<header><div class="brand">ĀIRA <small>THE SAREE STUDIO</small></div><nav><span>Discover</span><span>Collections</span><span>Our Craft</span></nav><div class="navtag">VIRTUAL STUDIO ✦</div></header>
+<main>
+<div class="intro"><div><div class="eyebrow">A NEW WAY TO DRAPE</div><h1>Find your forever saree.</h1><p>Explore a curated collection and preview the look in your own studio.</p></div><div class="steps"><span class="active">01 &nbsp; Choose saree</span><span>02 &nbsp; Style</span><span>03 &nbsp; Preview</span></div></div>
+<div class="workspace">
+<section class="panel"><div class="panelhead"><div><h2>Your virtual look</h2><div class="sub">Model preview · Full-length portrait</div></div><span style="font-size:10px;color:#9a815e">✦ STUDIO</span></div>
+<div class="preview"><div class="canvas"><img id="model" src="model-photo.jpeg" alt="Model preview"><div class="overlay"><div class="sari-body"></div><div class="pleats"></div><div class="pallu"></div></div></div><div class="previewbadge">✦ DEMO DRAPE PREVIEW</div></div>
+<div class="actions"><button class="btn secondary" id="reset">Reset</button><button class="btn primary" id="try">Apply this saree&nbsp; →</button></div></section>
+<section class="panel"><div class="panelhead"><div><h2>Curated collection</h2><div class="sub">Handpicked colours for every occasion</div></div><span style="font-size:11px;color:#8e6d4c">06 PIECES</span></div>
+<div class="rightbody"><h3 class="sectiontitle">Choose your drape</h3><p class="hint">Select a saree to change the colour and fabric treatment in the preview.</p>
+<div class="swatches" id="swatches">
+<button class="swatch selected" data-name="Royal Wine" data-color="#7b263f" data-border="#c59a67"><div class="fabric" style="background:linear-gradient(130deg,#4f142c,#9b3d58,#d2a76d)"></div><b>Royal Wine</b><small>Silk · Festive</small></button>
+<button class="swatch" data-name="Peacock Teal" data-color="#176c69" data-border="#d5b56c"><div class="fabric" style="background:linear-gradient(130deg,#064a4b,#1a8c83,#d4b56c)"></div><b>Peacock Teal</b><small>Banarasi · Wedding</small></button>
+<button class="swatch" data-name="Antique Gold" data-color="#b18a45" data-border="#f1d99b"><div class="fabric" style="background:linear-gradient(130deg,#8c642b,#d4b36c,#f1dfaa)"></div><b>Antique Gold</b><small>Chanderi · Occasion</small></button>
+<button class="swatch" data-name="Lotus Blush" data-color="#bd7888" data-border="#ead0bd"><div class="fabric" style="background:linear-gradient(130deg,#a95871,#d997a4,#f2d8c8)"></div><b>Lotus Blush</b><small>Organza · Daywear</small></button>
+<button class="swatch" data-name="Emerald Heirloom" data-color="#245a43" data-border="#c6a36a"><div class="fabric" style="background:linear-gradient(130deg,#173e31,#36775a,#c6a36a)"></div><b>Emerald Heirloom</b><small>Kanjivaram · Silk</small></button>
+<button class="swatch" data-name="Ivory Pearl" data-color="#d7c8a9" data-border="#a7834e"><div class="fabric" style="background:linear-gradient(130deg,#c2b18c,#f0e6d1,#b69a68)"></div><b>Ivory Pearl</b><small>Linen silk · Minimal</small></button>
+</div>
+<hr><h3 class="sectiontitle">Personalise your look</h3><p class="hint">A few finishing touches for your preview.</p>
+<label class="choice"><span>Gold zari border</span><input type="checkbox" checked id="zari"></label>
+<label class="choice"><span>Classic pleated pallu</span><input type="checkbox" checked id="pallu"></label>
+<label class="choice"><span>Traditional drape finish</span><input type="checkbox" id="finish"></label>
+<hr><label class="upload"><span style="font-size:23px">＋</span><span><strong>Upload another model photo</strong>Use a full-length, front-facing photo for best results<input type="file" id="upload" accept="image/*" hidden></span></label>
+<p class="footnote">Demo note: this prototype uses a visual colour-and-fabric overlay, not an AI-generated garment replacement. Connect a dedicated virtual try-on model for realistic body-aware saree draping.</p>
+</div></section>
+</div></main><div class="toast" id="toast"></div>
+<script>
+const root=document.documentElement, toast=document.getElementById('toast');
+let current={name:'Royal Wine',color:'#7b263f',border:'#c59a67'};
+function say(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2300)}
+document.querySelectorAll('.swatch').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
+ current={name:btn.dataset.name,color:btn.dataset.color,border:btn.dataset.border};
+ root.style.setProperty('--sari',current.color);root.style.setProperty('--border',current.border);
+}));
+document.getElementById('try').addEventListener('click',()=>say(current.name+' selected — demo drape applied.'));
+document.getElementById('reset').addEventListener('click',()=>{
+ document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('selected'));
+ const first=document.querySelector('.swatch');first.classList.add('selected');current={name:first.dataset.name,color:first.dataset.color,border:first.dataset.border};
+ root.style.setProperty('--sari',current.color);root.style.setProperty('--border',current.border);
+ document.getElementById('zari').checked=true;document.getElementById('pallu').checked=true;document.getElementById('finish').checked=false;say('Preview reset.');
+});
+document.getElementById('upload').addEventListener('change',e=>{const f=e.target.files[0];if(f){document.getElementById('model').src=URL.createObjectURL(f);say('New model photo loaded.')}});
+document.getElementById('pallu').addEventListener('change',e=>document.querySelector('.pallu').style.display=e.target.checked?'block':'none');
+document.getElementById('zari').addEventListener('change',e=>document.querySelector('.pleats').style.background=e.target.checked?'repeating-linear-gradient(90deg,transparent 0 7px,#fff5 8px 10px),linear-gradient(110deg,var(--sari),var(--border))':'var(--sari)');
+document.getElementById('finish').addEventListener('change',e=>document.querySelector('.sari-body').style.opacity=e.target.checked?'.96':'.82');
+</script></body></html>
